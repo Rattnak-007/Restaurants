@@ -72,6 +72,33 @@ if (!$product) {
                 <label for="image" class="form-label"><i class="fas fa-image"></i> Product Image</label>
                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                 <small class="text-muted"><i class="fas fa-info-circle"></i> Leave empty to keep current image</small>
+                <div class="mt-2">
+                    <?php
+                    $imageRelativePath = !empty($product['IMAGE_URL']) ? $product['IMAGE_URL'] : '';
+                    $imgSrc = '../Assets/images/no-image.png';
+                    if ($imageRelativePath) {
+                        $imageRelativePath = ltrim($imageRelativePath, '/\\');
+                        if (strpos($imageRelativePath, 'uploads/products/') === 0) {
+                            $webPath = '../' . str_replace('\\', '/', $imageRelativePath);
+                            $diskPath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $imageRelativePath);
+                        } else {
+                            $webPath = '../uploads/products/' . $imageRelativePath;
+                            $diskPath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $imageRelativePath;
+                        }
+                        if (file_exists($diskPath)) {
+                            $imgSrc = $webPath;
+                        }
+                    }
+                    if ($imgSrc === '../Assets/images/no-image.png' && !file_exists(dirname(__DIR__, 2) . '/Assets/images/no-image.png')) {
+                        $imgSrc = 'data:image/svg+xml;base64,' . base64_encode(
+                            '<svg width="180" height="120" xmlns="http://www.w3.org/2000/svg"><rect width="180" height="120" fill="#eee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#aaa" font-size="18">No Image</text></svg>'
+                        );
+                    }
+                    ?>
+                    <img id="imagePreview" src="<?php echo htmlspecialchars($imgSrc); ?>"
+                        alt="Image Preview"
+                        style="max-width:180px; max-height:120px; border-radius:8px; border:1px solid #ddd;">
+                </div>
             </div>
 
             <div class="mb-3">

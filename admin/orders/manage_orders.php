@@ -4,7 +4,7 @@ checkAdminAuth();
 require_once('../../config/database.php');
 
 // Fetch all orders with user info
-$sql = "SELECT o.id, o.user_id, o.total_amount, o.status, o.created_at, o.updated_at, 
+$sql = "SELECT o.id, o.user_id, o.total_amount, o.status, o.created_at, 
                u.name AS user_name, u.email AS user_email
         FROM orders o
         LEFT JOIN users u ON o.user_id = u.id

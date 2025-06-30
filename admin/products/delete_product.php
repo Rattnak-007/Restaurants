@@ -49,9 +49,10 @@ if ($product_id) {
             if (oci_execute($stmt)) {
                 // Delete image file if exists
                 if ($product && $product['IMAGE_URL']) {
-                    $image_path = '../../' . $product['IMAGE_URL'];
-                    if (file_exists($image_path)) {
-                        unlink($image_path);
+                    $imageRelativePath = ltrim($product['IMAGE_URL'], '/\\');
+                    $imageDiskPath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $imageRelativePath);
+                    if (file_exists($imageDiskPath)) {
+                        unlink($imageDiskPath);
                     }
                 }
                 oci_commit($conn);
