@@ -1,0 +1,119 @@
+body {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loading-body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.loading-container {
+  text-align: center;
+}
+
+.restaurant-loader {
+  margin-bottom: 20px;
+}
+
+.restaurant-loader i {
+  font-size: 3rem;
+  color: #fff;
+  margin: 0 15px;
+  opacity: 0;
+  animation: fadeInOut 2s infinite;
+}
+
+.restaurant-loader i:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.restaurant-loader i:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.loading-text {
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.loading-text span {
+  display: inline-block;
+  animation: bounce 1s infinite;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.loading-text span {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.loading-text span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.loading-text span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.loading-text span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.loading-text span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.loading-text span:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.loading-text span:nth-child(7) {
+  animation-delay: 0.6s;
+}
+.loading-text span:nth-child(8) {
+  animation-delay: 0.7s;
+}
+.loading-text span:nth-child(9) {
+  animation-delay: 0.8s;
+}
+.loading-text span:nth-child(10) {
+  animation-delay: 0.9s;
+}
+
+/* Add new styles for content transition */
+.content-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
